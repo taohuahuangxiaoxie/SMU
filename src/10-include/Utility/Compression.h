@@ -5,10 +5,10 @@
 
 /**
  * @file Compression.h
- * @brief SmuUtils 压缩和解压缩功能接口
+ * @brief Utility 压缩和解压缩功能接口
  */
 
-namespace SmuUtils::Compression {
+namespace Utility::Compression {
 
 /**
  * @brief 压缩算法类型
@@ -50,5 +50,5 @@ std::vector<char> Decompress(const std::vector<char>& compressed,
 std::vector<char> DecompressAuto(const std::vector<char>& compressed,
                                  Algorithm algorithm = Algorithm::Zstd);
 
-} // namespace SmuUtils::Compression
+} // namespace Utility::Compression
 

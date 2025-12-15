@@ -1,8 +1,8 @@
-#include "SmuUtils/Compression.h"
+#include "Utility/Compression.h"
 #include "zstd/zstd.h"
 #include <cstring>
 
-namespace SmuUtils::Compression {
+namespace Utility::Compression {
 
 // 内部辅助函数：流式解压（Zstd）
 static std::vector<char> DecompressStreamingZstd(const std::vector<char>& compressed);
@@ -186,4 +186,4 @@ std::vector<char> DecompressAuto(const std::vector<char>& compressed, Algorithm 
     }
 }
 
-} // namespace SmuUtils::Compression
+} // namespace Utility::Compression

@@ -4,12 +4,6 @@ project(wcdb_test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-# 抑制 WCDB 库相关的警告
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    add_compile_options(-Wno-pragmas)
-    add_compile_options(-Wno-error=format-security)
-    add_compile_options(-Wno-format)
-endif()
 
 add_compile_definitions(SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE)
 add_compile_definitions(_WCDB_ENABLED_=1)
@@ -22,6 +16,13 @@ else()
     # 兼容独立编译的情况
     set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../10-include)
     set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../lib)
+endif()
+
+#根据CMAKE_SYSTEM_PROCESSOR来设置LIB_DIR
+if(CMAKE_SYSTEM_PROCESSOR STREQUAL "aarch64")
+    set(LIB_DIR ${LIB_DIR}/arm64)
+else()
+    set(LIB_DIR ${LIB_DIR}/amd64)
 endif()
 
 include_directories(

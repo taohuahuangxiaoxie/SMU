@@ -2,10 +2,10 @@
 
 /**
  * @file Version.h
- * @brief SmuUtils 版本信息接口
+ * @brief Utility 版本信息接口
  */
 
-namespace SmuUtils {
+namespace Utility {
 
 /**
  * @brief 获取版本字符串
@@ -31,5 +31,5 @@ int GetVersionMinor();
  */
 int GetVersionPatch();
 
-} // namespace SmuUtils
+} // namespace Utility
 

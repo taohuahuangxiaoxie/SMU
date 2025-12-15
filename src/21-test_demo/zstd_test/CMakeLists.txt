@@ -23,6 +23,13 @@ else()
     set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../lib)
 endif()
 
+#根据CMAKE_SYSTEM_PROCESSOR来设置LIB_DIR
+if(CMAKE_SYSTEM_PROCESSOR STREQUAL "aarch64")
+    set(LIB_DIR ${LIB_DIR}/arm64)
+else()
+    set(LIB_DIR ${LIB_DIR}/amd64)
+endif()
+
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${INCLUDE_DIR}
