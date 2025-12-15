@@ -14,9 +14,15 @@ endif()
 add_compile_definitions(SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE)
 add_compile_definitions(_WCDB_ENABLED_=1)
 
-#添加依赖目录
-set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../10-include)
-set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../lib)
+# 使用通用配置中的路径（如果已定义，否则使用相对路径）
+if(DEFINED COMMON_INCLUDE_DIR)
+    set(INCLUDE_DIR ${COMMON_INCLUDE_DIR})
+    set(LIB_DIR ${COMMON_LIB_DIR})
+else()
+    # 兼容独立编译的情况
+    set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../10-include)
+    set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../lib)
+endif()
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
