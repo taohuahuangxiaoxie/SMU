@@ -1,0 +1,222 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build: All Projects (AMD64)",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/build.sh -a amd64 --all",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build: All Projects (ARM64)",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/build.sh -a arm64 --all",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build: wcdb_test (AMD64)",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/build.sh -a amd64 -p wcdb_test",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build: wcdb_test (ARM64)",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/build.sh -a arm64 -p wcdb_test",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build: zstd_test (AMD64)",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/build.sh -a amd64 -p zstd_test",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build: zstd_test (ARM64)",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/build.sh -a arm64 -p zstd_test",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build: Clean and Rebuild All (AMD64)",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/build.sh -a amd64 --all --clean",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build: Clean and Rebuild All (ARM64)",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/build.sh -a arm64 --all --clean",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Test: All Projects (AMD64)",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/test.sh -a amd64 --all",
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            }
+        },
+        {
+            "label": "Test: wcdb_test (AMD64)",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/test.sh -a amd64 -p wcdb_test",
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            }
+        },
+        {
+            "label": "Test: zstd_test (AMD64)",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/test.sh -a amd64 -p zstd_test",
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            }
+        },
+        {
+            "label": "Build and Test: Full Flow (All Projects)",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/build_and_test.sh --all",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build and Test: wcdb_test",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/build_and_test.sh -p wcdb_test",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build and Test: zstd_test",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash tool/script/build_and_test.sh -p zstd_test",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Clean: Build Directories",
+            "type": "shell",
+            "command": "docker exec -w /workspace/github/SMU cpp_run bash -c 'rm -rf build-amd64 build-arm64'",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": false,
+                "clear": true
+            }
+        }
+    ]
+}
+

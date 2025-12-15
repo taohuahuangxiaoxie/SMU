@@ -62,11 +62,18 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 endif()
 
 # Link zstd static library (users don't need to link zstd.so)
-# Use architecture-specific zstd library if available, otherwise use common lib directory
-if(EXISTS "${LIB_DIR}/${TARGET_ARCH}/libzstd.a")
-    set(ZSTD_LIB_PATH "${LIB_DIR}/${TARGET_ARCH}/libzstd.a")
-else()
+# LIB_DIR already points to lib/${ARCH}, so use it directly
+if(EXISTS "${LIB_DIR}/libzstd.a")
     set(ZSTD_LIB_PATH "${LIB_DIR}/libzstd.a")
+else()
+    message(WARNING "zstd library not found at ${LIB_DIR}/libzstd.a")
+    # Fallback to parent directory for backward compatibility
+    get_filename_component(PARENT_LIB_DIR "${LIB_DIR}/.." ABSOLUTE)
+    if(EXISTS "${PARENT_LIB_DIR}/libzstd.a")
+        set(ZSTD_LIB_PATH "${PARENT_LIB_DIR}/libzstd.a")
+    else()
+        message(FATAL_ERROR "找不到 zstd 库文件，查找路径: ${LIB_DIR}")
+    endif()
 endif()
 target_link_libraries(${PROJECT_NAME} PRIVATE ${ZSTD_LIB_PATH})
 

@@ -1,0 +1,75 @@
+{
+    "configurations": [
+        {
+            "name": "Linux (AMD64)",
+            "includePath": [
+                "${workspaceFolder}/src/10-include",
+                "${workspaceFolder}/src/10-include/**",
+                "${workspaceFolder}/src/20-components/**",
+                "${workspaceFolder}/src/21-test_demo/**"
+            ],
+            "defines": [
+                "SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE",
+                "_WCDB_ENABLED_=1",
+                "__linux__",
+                "__GNUC__"
+            ],
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerArgs": [
+                "-Wno-pragmas",
+                "-Wno-error=format-security",
+                "-Wno-format"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/src",
+                    "${workspaceFolder}/src/10-include",
+                    "${workspaceFolder}/src/20-components",
+                    "${workspaceFolder}/src/21-test_demo"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
+            }
+        },
+        {
+            "name": "Linux (ARM64)",
+            "includePath": [
+                "${workspaceFolder}/src/10-include",
+                "${workspaceFolder}/src/10-include/**",
+                "${workspaceFolder}/src/20-components/**",
+                "${workspaceFolder}/src/21-test_demo/**"
+            ],
+            "defines": [
+                "SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE",
+                "_WCDB_ENABLED_=1",
+                "__linux__",
+                "__GNUC__",
+                "__aarch64__"
+            ],
+            "compilerPath": "/usr/bin/aarch64-linux-gnu-g++",
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-gcc-arm64",
+            "compilerArgs": [
+                "-Wno-pragmas",
+                "-Wno-error=format-security",
+                "-Wno-format"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/src",
+                    "${workspaceFolder}/src/10-include",
+                    "${workspaceFolder}/src/20-components",
+                    "${workspaceFolder}/src/21-test_demo"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
+            }
+        }
+    ],
+    "version": 4
+}
+

@@ -1,0 +1,58 @@
+{
+    // C/C++ 扩展设置
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/src/10-include",
+        "${workspaceFolder}/src/10-include/**"
+    ],
+    "C_Cpp.default.defines": [
+        "SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE",
+        "_WCDB_ENABLED_=1"
+    ],
+    "C_Cpp.default.cppStandard": "c++14",
+    "C_Cpp.default.compilerPath": "",
+    "C_Cpp.default.intelliSenseMode": "linux-gcc-x64",
+    "C_Cpp.errorSquiggles": "enabled",
+    
+    // 文件关联
+    "files.associations": {
+        "*.h": "c",
+        "*.hpp": "cpp",
+        "*.cpp": "cpp"
+    },
+    
+    // 文件排除
+    "files.exclude": {
+        "**/build-*/**": true,
+        "**/.git": true,
+        "**/.DS_Store": true
+    },
+    
+    // 搜索排除
+    "search.exclude": {
+        "**/build-*/**": true,
+        "**/3rd/**": true,
+        "**/lib/**": true
+    },
+    
+    // 文件监视排除
+    "files.watcherExclude": {
+        "**/build-*/**": true,
+        "**/lib/**": true,
+        "**/.git/**": true
+    },
+    
+    // 编辑器设置
+    "editor.formatOnSave": false,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    
+    // 终端设置
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    
+    // CMake 设置（如果安装了 CMake Tools 扩展）
+    "cmake.configureOnOpen": false,
+    "cmake.buildDirectory": "${workspaceFolder}/build-amd64",
+    "cmake.generator": "Unix Makefiles"
+}
+

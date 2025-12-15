@@ -81,24 +81,17 @@ fi
 check_command "cmake" || exit 1
 check_command "make" || exit 1
 
-# 准备库文件：将对应架构的库拷贝到lib目录
-log_info "准备库文件 (架构: $ARCH)..."
+# 检查架构库目录是否存在
 ARCH_LIB_DIR="$ROOT_DIR/lib/$ARCH"
-MAIN_LIB_DIR="$ROOT_DIR/lib"
-
 if [ -d "$ARCH_LIB_DIR" ]; then
-    # 检查架构目录是否有库文件
     ARCH_LIBS=$(find "$ARCH_LIB_DIR" -type f \( -name "*.so*" -o -name "*.a" \) 2>/dev/null)
     if [ -n "$ARCH_LIBS" ]; then
-        log_info "从 $ARCH_LIB_DIR 拷贝库文件到 $MAIN_LIB_DIR"
-        # 拷贝所有库文件（.so, .so.*, .a）
-        find "$ARCH_LIB_DIR" -type f \( -name "*.so*" -o -name "*.a" \) -exec cp -f {} "$MAIN_LIB_DIR/" \;
-        log_success "库文件准备完成"
+        log_info "使用架构库目录: $ARCH_LIB_DIR"
     else
-        log_warning "架构目录 $ARCH_LIB_DIR 中没有找到库文件，使用现有库文件"
+        log_warning "架构目录 $ARCH_LIB_DIR 中没有找到库文件"
     fi
 else
-    log_warning "架构目录 $ARCH_LIB_DIR 不存在，使用现有库文件"
+    log_warning "架构目录 $ARCH_LIB_DIR 不存在"
 fi
 
 # 创建顶层构建目录

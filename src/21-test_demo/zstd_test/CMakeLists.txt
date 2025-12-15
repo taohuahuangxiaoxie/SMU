@@ -34,6 +34,7 @@ add_executable(
 )
 
 #链接依赖库
+# LIB_DIR already points to lib/${ARCH}, so use it directly
 # 优先使用 .so 文件，如果不存在则使用 .a 文件
 if(EXISTS ${LIB_DIR}/libzstd.so.1.5.7)
     target_link_libraries(${PROJECT_NAME} ${LIB_DIR}/libzstd.so.1.5.7)

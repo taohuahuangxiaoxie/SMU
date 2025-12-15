@@ -58,24 +58,19 @@ validate_arch "$ARCH" || exit 1
 ROOT_DIR=$(get_root_dir)
 log_info "项目根目录: $ROOT_DIR"
 
-# 准备库文件：确保使用正确架构的库
-log_info "准备库文件 (架构: $ARCH)..."
+# 设置库文件路径：使用架构特定的库目录
 ARCH_LIB_DIR="$ROOT_DIR/lib/$ARCH"
-MAIN_LIB_DIR="$ROOT_DIR/lib"
-
 if [ -d "$ARCH_LIB_DIR" ]; then
-    # 检查架构目录是否有库文件
     ARCH_LIBS=$(find "$ARCH_LIB_DIR" -type f \( -name "*.so*" -o -name "*.a" \) 2>/dev/null)
     if [ -n "$ARCH_LIBS" ]; then
-        log_info "从 $ARCH_LIB_DIR 拷贝库文件到 $MAIN_LIB_DIR"
-        # 拷贝所有库文件（.so, .so.*, .a）
-        find "$ARCH_LIB_DIR" -type f \( -name "*.so*" -o -name "*.a" \) -exec cp -f {} "$MAIN_LIB_DIR/" \;
-        log_success "库文件准备完成"
+        log_info "使用架构库目录: $ARCH_LIB_DIR"
+        # 设置 LD_LIBRARY_PATH 以便运行时加载正确的库文件
+        export LD_LIBRARY_PATH="$ARCH_LIB_DIR:${LD_LIBRARY_PATH:-}"
     else
-        log_warning "架构目录 $ARCH_LIB_DIR 中没有找到库文件，使用现有库文件"
+        log_warning "架构目录 $ARCH_LIB_DIR 中没有找到库文件"
     fi
 else
-    log_warning "架构目录 $ARCH_LIB_DIR 不存在，使用现有库文件"
+    log_warning "架构目录 $ARCH_LIB_DIR 不存在"
 fi
 
 # 确定要测试的项目列表

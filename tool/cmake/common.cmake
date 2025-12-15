@@ -18,8 +18,8 @@ message(STATUS "Building for architecture: ${ARCH}")
 set(ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(INCLUDE_DIR ${ROOT_DIR}/src/10-include)
 
-# 统一使用lib根目录（库文件会在编译前由脚本拷贝到此处）
-set(LIB_DIR ${ROOT_DIR}/lib)
+# 根据架构使用对应的库目录
+set(LIB_DIR ${ROOT_DIR}/lib/${ARCH})
 
 # 加载交叉编译工具链（仅arm64需要）
 if(ARCH STREQUAL "arm64")
