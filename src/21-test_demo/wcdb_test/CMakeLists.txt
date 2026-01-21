@@ -42,5 +42,9 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 #链接依赖库
 find_package(Threads REQUIRED)
-# LIB_DIR already points to lib/${ARCH}, so use it directly
-target_link_libraries(${PROJECT_NAME} ${LIB_DIR}/libwcdb.so)
+
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+        ${LIB_DIR}/libwcdb.so
+        Threads::Threads
+)

@@ -21,6 +21,8 @@ struct ModelSample
     std::string created_at;
     std::string updated_at;
 
+    std::string add_1;
+
 #ifdef _WCDB_ENABLED_
     WCDB_CPP_ORM_DECLARATION(ModelSample);
 #endif

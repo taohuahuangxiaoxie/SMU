@@ -21,6 +21,7 @@ WCDB_CPP_SYNTHESIZE(state);
 WCDB_CPP_SYNTHESIZE(country);
 WCDB_CPP_SYNTHESIZE(created_at);
 WCDB_CPP_SYNTHESIZE(updated_at);
+WCDB_CPP_SYNTHESIZE(add_1);
 
 WCDB_CPP_PRIMARY_AUTO_INCREMENT(id);
 WCDB_CPP_ORM_IMPLEMENTATION_END;
@@ -62,6 +63,7 @@ void insertData(WCDB::Database &db)
         model.age = i;
         model.email = "john.doe@example.com " + std::to_string(i);
         model.phone = "1234567890 " + std::to_string(i);
+        model.add_1 = "add_1_ " + std::to_string(i);
         models.push_back(model);
     }
     auto ret = db.insertObjects<ModelSample>(models, TABLE_NAME_SAMPLE);
@@ -79,25 +81,26 @@ void insertData(WCDB::Database &db)
 void queryData(WCDB::Database &db)
 {
     auto allObjects = db.getAllObjects<ModelSample>(TABLE_NAME_SAMPLE);
+    int countInterval = 100;
     if (allObjects.hasValue()) {
         size_t totalCount = allObjects.value().size();
         SPDLOG_INFO("查询到数据总数: {}", totalCount);
         
-        // 每隔1000条打印一次数据内容
+        // 每隔 countInterval 条打印一次数据内容
         for (size_t i = 0; i < totalCount; i++) {
-            if (i % 1000 == 0) {
+            if (i % countInterval == 0) {
                 const ModelSample &model = allObjects.value()[i];
-                SPDLOG_INFO("第 {} 条数据: id={}, name={}, age={}, email={}, phone={}", 
-                           i + 1, model.id, model.name, model.age, model.email, model.phone);
+                SPDLOG_INFO("第 {} 条数据: id={}, name={}, age={}, email={}, phone={}, add1={}", 
+                           i + 1, model.id, model.name, model.age, model.email, model.phone, model.add_1);
             }
         }
         
         // 打印最后一条数据（如果不是1000的倍数）
-        if (totalCount > 0 && (totalCount - 1) % 1000 != 0) {
+        if (totalCount > 0 && (totalCount - 1) % countInterval != 0) {
             const ModelSample &lastModel = allObjects.value()[totalCount - 1];
-            SPDLOG_INFO("最后一条数据 (第 {} 条): id={}, name={}, age={}, email={}, phone={}", 
+            SPDLOG_INFO("最后一条数据 (第 {} 条): id={}, name={}, age={}, email={}, phone={}, add1={}", 
                        totalCount, lastModel.id, lastModel.name, lastModel.age, 
-                       lastModel.email, lastModel.phone);
+                       lastModel.email, lastModel.phone, lastModel.add_1);
         }
     } else {
         SPDLOG_ERROR("查询数据失败");
@@ -201,7 +204,7 @@ int main()
     while (runTag) {
         count++;
         if (count % 5 == 0) {
-            insertData(db);
+            //insertData(db);
         }
         SPDLOG_INFO("查询数据第{}次", count);
         queryData(db);
